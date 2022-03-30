@@ -21,7 +21,8 @@ function computerPlayed() {
     return computerChoice;
 }
 
-//Takes in player selection and computerPlayed's return value, switch case for players selection and then if else to determine winner
+//Takes in player selection and computerPlayed's return value, switch case 
+//for players selection and then if else to determine winner
 //returns one of three values (tie, playerWin, computerWin)
 function playOneGame(playerSelection, computerSelection) {
 
@@ -38,36 +39,37 @@ function playOneGame(playerSelection, computerSelection) {
                     console.log('Tie Match!');
                 }
             else if(computerSelection == 'Paper')
-            {
-                outcome = 'computerWin';
-                console.log('You Lose! Paper beats Rock');
-            }
+                {
+                    outcome = 'computerWin';
+                    console.log('You Lose! Paper beats Rock');
+                }
             else   
-            {   
-                outcome = 'playerWin';
-                console.log('You Win! Rock beats Scissors');
-            }
-                break;
+                {   
+                    outcome = 'playerWin';
+                    console.log('You Win! Rock beats Scissors');
+                }
+        break;
 
         case 'paper':
             if(computerSelection == 'Rock')
-            {
-                outcome = 'playerWin';
-                console.log('You Win! Paper beats Rock');
-            }
-        else if(computerSelection == 'Paper')
-        {
-            outcome = 'tie';
-            console.log('Tie Match');
-        }
-        else   
-            {         
-            outcome = 'computerWin';
-            console.log('You Lose! Scissors beats Paper');
-            }
-            break;
+                {
+                    outcome = 'playerWin';
+                    console.log('You Win! Paper beats Rock');
+                }
+            else if(computerSelection == 'Paper')
+                {
+                    outcome = 'tie';
+                    console.log('Tie Match');
+                }
+            else   
+                {         
+                outcome = 'computerWin';
+                console.log('You Lose! Scissors beats Paper');
+                }
+        break;
 
-            case 'scissors':
+        case 'scissor':
+        case 'scissors':
                 if(computerSelection == 'Rock')
                 {
                     outcome = 'computerWin';
@@ -79,9 +81,11 @@ function playOneGame(playerSelection, computerSelection) {
                 console.log('You Win! Scissors beats Paper');
                 }
             else   
-    {            outcome = 'tie';
-                console.log('Tie Match!');}
-                break;
+                {
+                outcome = 'tie';
+                console.log('Tie Match!');
+                }
+        break;
         }
        
         return outcome;
@@ -97,27 +101,29 @@ function game() {
     let computerInput = computerPlayed();
     let playerInput = prompt();
 
-
+    //Loop to stop the game at cancellation or when best of 5 is reached
     do
     {
         if(playerInput === null)
-        {
+            {
             playerCancel = true;
-        }
+            }
         else{
-        result = playOneGame(playerInput, computerInput);
+            result = playOneGame(playerInput, computerInput);
 
         if(result === 'playerWin')
-           { playerWins++;
-            console.log('The current score is Player: ' + playerWins + ' Computer: ' + computerWins )}
+           { 
+            playerWins++;
+            console.log('The current score is Player: ' + playerWins + ' Computer: ' + computerWins )
+            }
         else if(result === 'computerWin')
            { 
             computerWins++
             console.log('The current score is Player: ' + playerWins + ' Computer: ' + computerWins )
-        }
+            }
         else if(result === 'tie')
             console.log('The current score is Player: ' + playerWins + ' Computer: ' + computerWins )
-            else
+        else
             {
             console.log('Something went wrong. Make sure you are spelling correctly')
             }
