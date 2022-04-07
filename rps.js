@@ -90,16 +90,49 @@ function playOneGame(playerSelection, computerSelection) {
         return outcome;
     }
 
+
+        let playerScore = 0;
+        let computerScore = 0;
+                            
         const rockBtn = document.querySelector('.rock'); 
  
         rockBtn.addEventListener('click', function(){        
-            playOneGame('rock', computerPlayed())
+           
+            if(playerScore < 3 && computerScore < 3)
+            {
+                let outcome = playOneGame('rock', computerPlayed())
+                if(outcome === 'playerWin')
+                    playerScore++;
+                else if(outcome === 'computerWin')
+                    computerScore++;
+            }
+           
+           
+            if(playerScore == 3)
+            {
+                console.log('Player wins the Best out of 5')
+                playerScore = 0;
+                computerScore = 0;
+            }    
+            else if(computerScore == 3)
+            {
+                console.log('Computer wins the Best of 5')
+                playerScore = 0;
+                computerScore = 0;
+            }
+
+
+            
+            console.log(playerScore);
+            console.log(computerScore);
         })
 
         const paperBtn = document.querySelector('.paper');
  
         paperBtn.addEventListener('click', function(){        
             playOneGame('paper', computerPlayed())
+            console.log(playerScore);
+            console.log(computerScore);
         })
 
 
