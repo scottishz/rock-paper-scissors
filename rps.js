@@ -1,5 +1,4 @@
-console.log('Play a game of Rock Paper scissors vs the computer. Make selection below:')
-game();
+
 
 //Function to return random computer choice between rock paper and scissors
 function computerPlayed() {
@@ -90,52 +89,24 @@ function playOneGame(playerSelection, computerSelection) {
        
         return outcome;
     }
-    
-//Plays a 5 round game
-function game() {
 
-    let computerWins = 0;
-    let playerWins = 0;
-    let result;
-    let playerCancel = false;
-    let computerInput = computerPlayed();
-    let playerInput = prompt();
+        const rockBtn = document.querySelector('.rock'); 
+ 
+        rockBtn.addEventListener('click', function(){        
+            playOneGame('rock', computerPlayed())
+        })
 
-    //Loop to stop the game at cancellation or when best of 5 is reached
-    do
-    {
-        if(playerInput === null)
-            {
-            playerCancel = true;
-            }
-        else{
-            result = playOneGame(playerInput, computerInput);
+        const paperBtn = document.querySelector('.paper');
+ 
+        paperBtn.addEventListener('click', function(){        
+            playOneGame('paper', computerPlayed())
+        })
 
-        if(result === 'playerWin')
-           { 
-            playerWins++;
-            console.log('The current score is Player: ' + playerWins + ' Computer: ' + computerWins )
-            }
-        else if(result === 'computerWin')
-           { 
-            computerWins++
-            console.log('The current score is Player: ' + playerWins + ' Computer: ' + computerWins )
-            }
-        else if(result === 'tie')
-            console.log('The current score is Player: ' + playerWins + ' Computer: ' + computerWins )
-        else
-            {
-            console.log('Something went wrong. Make sure you are spelling correctly')
-            }
 
-            computerInput = computerPlayed();
-            playerInput = prompt();
-        }
-    } while (playerWins < 3 && computerWins < 3 && !playerCancel)
+        const scissorBtn = document.querySelector('.scissors');
 
-    if(playerCancel == true)
-        console.log('No input received. To start a new game, refresh the page')
-    else
-        console.log('The game is over. Final Score -> Player: ' + playerWins + ' Computer: ' + computerWins)
+        scissorBtn.addEventListener('click', function(){
+            playOneGame('scissor', computerPlayed())
+        })
 
-}
+        
