@@ -35,17 +35,17 @@ function playOneGame(playerSelection, computerSelection) {
             if(computerSelection == 'Rock')
                 {
                     outcome = 'tie';
-                    console.log('Tie Match!');
+                    outcomeMessage.textContent = 'Tie Match!';
                 }
             else if(computerSelection == 'Paper')
                 {
                     outcome = 'computerWin';
-                    console.log('You Lose! Paper beats Rock');
+                    outcomeMessage.textContent = 'You Lose! Paper beats Rock';
                 }
             else   
                 {   
                     outcome = 'playerWin';
-                    console.log('You Win! Rock beats Scissors');
+                    outcomeMessage.textContent = 'You Win! Rock beats Scissors';
                 }
         break;
 
@@ -53,17 +53,17 @@ function playOneGame(playerSelection, computerSelection) {
             if(computerSelection == 'Rock')
                 {
                     outcome = 'playerWin';
-                    console.log('You Win! Paper beats Rock');
+                    outcomeMessage.textContent = 'You Win! Paper beats Rock';
                 }
             else if(computerSelection == 'Paper')
                 {
                     outcome = 'tie';
-                    console.log('Tie Match');
+                    outcomeMessage.textContent = 'Tie Match';
                 }
             else   
                 {         
                 outcome = 'computerWin';
-                console.log('You Lose! Scissors beats Paper');
+                outcomeMessage.textContent = 'You Lose! Scissors beats Paper';
                 }
         break;
 
@@ -72,17 +72,17 @@ function playOneGame(playerSelection, computerSelection) {
                 if(computerSelection == 'Rock')
                 {
                     outcome = 'computerWin';
-                    console.log('You Lose! Rock beats Scissors');
+                    outcomeMessage.textContent = 'You Lose! Rock beats Scissors';
                 }
             else if(computerSelection == 'Paper')
                 {
                 outcome = 'playerWin';
-                console.log('You Win! Scissors beats Paper');
+                outcomeMessage.textContent = 'You Win! Scissors beats Paper';
                 }
             else   
                 {
                 outcome = 'tie';
-                console.log('Tie Match!');
+                outcomeMessage.textContent = 'Tie Match!';
                 }
         break;
         }
@@ -93,24 +93,44 @@ function playOneGame(playerSelection, computerSelection) {
 
         let playerScore = 0;
         let computerScore = 0;
-                            
+
+        const container = document.querySelector('.output');
+        
+        const outcomeMessage = document.createElement('div');
+        outcomeMessage.classList.add('current-game');
+        outcomeMessage.textContent = 'Select a button to begin a game';
+        
+        const currentScore = document.createElement('div');
+        currentScore.classList.add('current-score');
+        currentScore.textContent = ('Player: ' + playerScore + ' Computer: ' + computerScore);
+        
+        container.appendChild(outcomeMessage);
+        container.appendChild(currentScore);
+
         const rockBtn = document.querySelector('.rock'); 
  
         rockBtn.addEventListener('click', function(){        
            
+
+
             if(playerScore < 3 && computerScore < 3)
             {
                 let outcome = playOneGame('rock', computerPlayed())
                 if(outcome === 'playerWin')
+
                     playerScore++;
                 else if(outcome === 'computerWin')
+
                     computerScore++;
+
+                    currentScore.textContent = ('Player: ' + playerScore + ' Computer: ' + computerScore);
             }
            
            
             if(playerScore == 3)
             {
                 console.log('Player wins the Best out of 5')
+                
                 playerScore = 0;
                 computerScore = 0;
             }    
